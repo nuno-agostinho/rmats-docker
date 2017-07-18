@@ -1,5 +1,5 @@
-# Splicing analysis (Docker)
-Docker containing software for splicing analysis and their requirements
+# rMATS (Docker)
+Docker to run splicing analysis using rMATS
 
 ## Available software
 - [rMATS](http://rnaseq-mats.sourceforge.net) 3.2.5 (run using `python ${rmats}/RNASeq-MATS.py`)
