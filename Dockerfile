@@ -1,4 +1,4 @@
-FROM ubuntu:16.10
+FROM ubuntu:latest
 MAINTAINER Nuno Agostinho <nunodanielagostinho@gmail.com>
 
 RUN apt-get update
@@ -53,3 +53,8 @@ RUN apt-get install -y bedtools
 # Usage: python ${rmats}/RNASeq-MATS.py [options]
 ENV rmats=rMATS.3.2.5
 ADD ${rmats}.tar.bz2 .
+WORKDIR ${rmats}
+RUN echo '#!/usr/bin/env python2.7' | \
+	cat - RNASeq-MATS.py > tmp && mv tmp RNASeq-MATS.py
+RUN chmod 777 RNASeq-MATS.py
+ENV PATH="${PATH}:${SW}/${rmats}"
