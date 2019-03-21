@@ -54,7 +54,15 @@ RUN apt-get install -y bedtools
 ENV rmats=rMATS.3.2.5
 ADD ${rmats}.tar.bz2 .
 WORKDIR ${rmats}
+
+ENV file=RNASeq-MATS.py
 RUN echo '#!/usr/bin/env python2.7' | \
-	cat - RNASeq-MATS.py > tmp && mv tmp RNASeq-MATS.py
-RUN chmod 777 RNASeq-MATS.py
-ENV PATH="${PATH}:${SW}/${rmats}"
+	cat - ${file} > tmp && mv tmp ${file}
+RUN chmod 777 ${file}
+
+ENV file=bin/trimFastq.py
+RUN echo '#!/usr/bin/env python2.7' | \
+	cat - ${file} > tmp && mv tmp ${file}
+RUN chmod 777 ${file}
+
+ENV PATH="${PATH}:${SW}/${rmats}:${SW}/${rmats}/bin"
